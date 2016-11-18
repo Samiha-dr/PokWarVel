@@ -20,12 +20,23 @@ namespace PokWarVel
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/js/bootstrap.js",
+                      "~/Scripts/js/respond.js",
+                      "~/Scripts/js/jquery.js",
+                      "~/Scripts/js/bootstrap.min.js",
+                      "~/Scripts/js/lightbox.min.js",
+                      "~/Scripts/js/wow.min.js",
+                      "~/Scripts/js/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/css/font-awesome.min.css",
+                      "~/Content/css/animate.min.css",
+                      "~/Content/css/lightbox.css",
+                      "~/Content/css/main.css",
+                      "~/Content/css/responsive.css"));
         }
     }
 }
