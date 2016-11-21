@@ -14,6 +14,7 @@ namespace PokWarVel.Controllers
         {
             MarvelRequester r = new MarvelRequester();
             List<Characters> info = r.GetCharacters(limit: 100);
+            //info.Where(i=>i.name=="") une requete linq
 
             return View(info);
         }
@@ -31,5 +32,7 @@ namespace PokWarVel.Controllers
 
             return View();
         }
+
+        
     }
 }
