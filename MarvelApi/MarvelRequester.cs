@@ -40,7 +40,7 @@ namespace MarvelApi
             
         }
 
-        public List<Characters> GetCharacters(int limit = 1, int offset = 200, string Endpoint = "v1/public/characters")
+        public List<Characters> GetCharacters(long id,int limit = 1, int offset = 200, string Endpoint = "v1/public/characters")
         {
             //Marvel accept a maximum of 100 character by requests
             if (limit > 100)
@@ -102,7 +102,7 @@ namespace MarvelApi
             //2- Calculate hash in accordance with marvel documentation
             hash = Tools.CalculateMD5LikeMarvel(t, pKey).ToLower();
             //3- Prepare the parameters
-            urlParameters = "?nameStartsWith=" + HttpUtility.UrlEncode(SearchString) + "&ts=" + t.ToString().Replace(":", "").Replace(".", "") + "&limit=" + limit + "&offset=" + offset + "&apikey=" + Key + "&hash=" + hash;
+            urlParameters = "?nameStartsWith=" + HttpUtility.UrlEncode(SearchString).UrlEncode(SearchString) + "&ts=" + t.ToString().Replace(":", "").Replace(".", "") + "&limit=" + limit + "&offset=" + offset + "&apikey=" + Key + "&hash=" + hash;
 
             //4- Get the json response from marvel API
             string json = base.Execute(Endpoint, urlParameters);
@@ -128,5 +128,6 @@ namespace MarvelApi
                 return null;
             }
         }
+        
     }
 }
