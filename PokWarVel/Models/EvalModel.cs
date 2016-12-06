@@ -64,8 +64,8 @@ namespace PokWarVel.Models
 
 
                     SqlParameter pidHero = new SqlParameter("@idHero", this.IdHero);
-                    SqlParameter pcote = new SqlParameter("@typeHero", this.cote);
-                    SqlParameter pdate = new SqlParameter("@eval", this.date);
+                    SqlParameter pcote = new SqlParameter("@cote", this.cote);
+                    SqlParameter pdate = new SqlParameter("@date", this.date);
                     SqlParameter pcomment = new SqlParameter("@comment", this.comment);
 
                     Cmd.Parameters.Add(pidHero);
