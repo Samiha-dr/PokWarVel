@@ -112,12 +112,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EvalController.cs" />
+    <Compile Include="Controllers\GmapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infra\Mapper.cs" />
+    <Compile Include="Infra\SessionUtil.cs" />
     <Compile Include="Models\EvalModel.cs" />
+    <Compile Include="Models\EvalViewModel.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -327,6 +332,7 @@
     <Content Include="Views\Shared\_Fiche.cshtml" />
     <Content Include="Views\Search\Results.cshtml" />
     <Content Include="Views\Eval\Eval.cshtml" />
+    <Content Include="Views\Gmap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,29 +9,32 @@ namespace PokWarVel.Controllers
 {
     public class EvalController : Controller
     {
-        // GET: Eval
+
+        // GET: Hero
         public ActionResult Index()
-        {   
-            ;
+        {
             return View();
         }
 
-        public ActionResult Eval (long id)
+        /// <summary>
+        /// get Evals view for the specified hero.
+        /// </summary>
+        /// <param name="idHero">The hero's id.</param>
+        /// <returns>The view</returns>
+        public ActionResult Eval(long id)
         {
-            EvalModel Ev1=new EvalModel();
-            MarvelApi.MarvelRequester Communicator= new MarvelApi.MarvelRequester();
-            Ev1.MonHero= Communicator.GetCharacterById(id);
-            return View(Ev1);
+            EvalViewModel ev = new Models.EvalViewModel();
+            ev.Evm = new EvalModel() { IdHero = id };
+            ev.Rm = ResultModel.GetOne(id, ResultModel.Etype.Marvel);
 
+
+            return View(ev);
         }
 
         [HttpPost]
-
-        public ActionResult Eval (long id,EvalModel E)
+        public ActionResult Eval(EvalViewModel Ev)
         {
-             E.IdHero = id;
-          
-            if (E.Save())
+            if (Ev.Evm.Save())
             {
                 ViewBag.Msg = "Enregistré";
             }
@@ -39,13 +42,10 @@ namespace PokWarVel.Controllers
             {
                 ViewBag.Error = "Erreur lors de l'enregistrement";
             }
-            
-            MarvelApi.MarvelRequester communicator = new MarvelApi.MarvelRequester();
-            E.MonHero = communicator.GetCharacterById(id);
+            Ev.Rm = ResultModel.GetOne(Ev.Evm.IdHero, ResultModel.Etype.Marvel);
 
-            return View(E);
-        }
-        }
 
+            return View(Ev);
+        }
     }
 }

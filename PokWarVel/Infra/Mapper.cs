@@ -1,0 +1,34 @@
+﻿using MarvelApi.Model;
+using PokWarVel.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace PokWarVel.Infra
+{
+    public class Mapper
+    {
+        
+        /// <summary>
+        /// Create a neuw ResultModel from a Marvel Character
+        /// </summary>
+        /// <param name="c">The character to use</param>
+        /// <returns>A ResultModel with data from Marvel Character</returns>
+        public static ResultModel FromMarvelToLocal(Characters c)
+        {
+            ResultModel rm = new Models.ResultModel();
+            rm.ID = c.id;
+            rm.Name = c.name;
+            rm.Avatar = c.Avatar;
+            rm.TypeElement = ResultModel.Etype.Marvel;
+            if(c.ComicLists!=null)
+            {
+                rm.Badge = c.ComicLists.ComicSummaries.Count;
+            }
+
+            return rm;
+        }
+    }
+}
+   

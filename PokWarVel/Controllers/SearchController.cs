@@ -1,5 +1,7 @@
 ﻿using MarvelApi;
 using MarvelApi.Model;
+using PokWarVel.Infra;
+using PokWarVel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,31 +15,45 @@ namespace PokWarVel.Controllers
         // GET: Search
         public ActionResult Index()
         {
-
-            return View();
+            return RedirectToActionPermanent("Index", "Home");
         }
 
-        [HttpPost]
-        public ActionResult Results(string Search)
+
+        public ActionResult Results(string Search="", string page="")
         {
+            int Current =0;
+            
+            if (page == "" || page=="-1")
+            {
+                ViewBag.Next = 1;
+                ViewBag.Prev = -1;
+                Current = 0;
+            }
+            else
+            {
+                Current = int.Parse(page);
+                if (Current > 1)
+                {
+                    
+                    ViewBag.Prev = Current- 1;
+                }
+
+                ViewBag.Next = Current + 1;
+            }
+
             MarvelRequester r = new MarvelRequester();
-            List<Characters> info = r.GetCharacters(limit: 100);
-            ////filtre 
-            //List<Characters> trouve = new List<Characters>();
-            //foreach (Characters item in info)
-            //{
-            //    if (item.name.Contains (Search))
-            //    {
-            //        trouve.Add(item);
-            //    }
-            //}
+            List<Characters> info = r.SearchCharacters(limit: 10, offset: Current*10, SearchString:Search);
 
 
-            //return View(trouve);
-            //LINQ
-            return View(info.Where(l => l.name.Contains(Search)));
+            ViewBag.searchword = Search;
+            if (info!=null && info.Count > 0)
+            {
+                return View(info.Select(i => Mapper.FromMarvelToLocal(i)).ToList());
+            }
+            else
+            {
+                return View(new List<ResultModel>());
+            }
         }
-        
-        
-    } 
+    }
 }

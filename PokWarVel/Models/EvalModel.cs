@@ -36,7 +36,7 @@ namespace PokWarVel.Models
 
         public DateTime Date
         {
-            get { return DateTime.Now(); }
+            get { return DateTime.Now; }
            
         }
 

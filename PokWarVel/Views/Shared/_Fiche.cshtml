@@ -1,13 +1,30 @@
-﻿@model MarvelApi.Model.Characters
-
-
-    <div class="col-sm-6 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
-        <div class="single-service">
-            <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-
-                <img src="@Model.Avatar" />
+﻿@model PokWarVel.Models.ResultModel
+<div class="col-xs-6 col-sm-6 col-md-4">
+    <div class="Fiche">
+        <div class="portfolio-single head">
+            <div class="roundedImage" style="background:url(@Model.Avatar) no-repeat 0px 0px;">
+                &nbsp;
             </div>
-            <h2>@Html.DisplayFor(modelItem => @Model.name)</h2>
-            <p> @Html.DisplayFor(modelItem => @Model.description) .</p>
+            <div class="portfolio-view">
+                <ul class="nav nav-pills">
+                    <li><a href="~/Hero/Eval/@Model.ID"><i class="fa fa-link"></i></a></li>
+                </ul>
+            </div>
         </div>
+        <div class="HeroName">
+            <h2>
+                @Model.Name
+
+                @{
+
+                    <span class="badge">@Model.Badge</span>
+
+                }
+
+            </h2>
+
+
+        </div>
+
     </div>
+</div>
